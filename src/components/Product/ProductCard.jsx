@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 
 function ProductCard({product}) {
   const {image, title, id, rating, price} = product;
+  
   return (
     <div className={`${classes.card_container}`}>
       <Link to={`/products/${id}`}>
