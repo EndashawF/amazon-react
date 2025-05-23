@@ -3,6 +3,9 @@ import axios from "axios";
 import ProductCard from "./ProductCard";
 import classes from "./Product.module.css";
 import Loader from "../Loader/Loader";
+
+
+
 function Product() {
   const [products, setProducts] = useState([]); //  Start with an empty array
 const [isLoading, setIsLoading] =useState(false)
@@ -25,9 +28,9 @@ const [isLoading, setIsLoading] =useState(false)
         isLoading?(<Loader/>): 
         (<section className={classes.products_container}>
           {products.length > 0 ? ( //  Only map if data exists
-            products.map((singleProduct) => (
-              <ProductCard product={singleProduct} key={singleProduct.id} />
-            ))
+            products?.map((singleProduct) =>{
+             return <ProductCard renderAdd={true} product={singleProduct} key={singleProduct.id} />;
+            })
           ) : (
             <p>Loading products...</p> //  Loading or fallback message
           )}

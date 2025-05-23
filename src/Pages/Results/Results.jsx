@@ -7,6 +7,7 @@ import { productUrl } from "../../components/Api/endPoints";
 import ProductCard from "../../components/Product/ProductCard";
 import Loader from "../../components/Loader/Loader";
 
+
 function Results() {
   const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -35,7 +36,12 @@ function Results() {
         ) : (
           <div className={classes.products_container}>
             {results?.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard
+                key={product.id}
+                product={product}
+                renderDesc={false}
+                renderAdd={true}
+              />
             ))}
           </div>
         )}

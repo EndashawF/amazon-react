@@ -7,12 +7,13 @@ import LowerHeader from './LowerHeader';
 import { BiCart } from "react-icons/bi";
 import { DataContext } from '../DataProvider/DataProvider';
 
+
 function Header() {
 
   const [{basket}, dispatch]=useContext(DataContext)
   console.log(basket)
   return (
-    <>
+    <section className={classes.fixed}>
       <section>
         <div className={classes.header_container}>
           {/* logo section*/}
@@ -65,14 +66,14 @@ function Header() {
             </Link>
 
             <Link to="/cart" className={classes.cart}>
-              <BiCart size={50} />
+              <BiCart size={35} />
               <span>{basket?.length || 0}</span>
             </Link>
           </div>
         </div>
       </section>
       <LowerHeader />
-    </>
+    </section>
   );
 };
 
