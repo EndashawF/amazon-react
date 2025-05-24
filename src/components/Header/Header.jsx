@@ -1,17 +1,17 @@
-import React, { useContext } from 'react'
+import React, { useContext } from "react";
 import classes from "./Header.module.css";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 import { SlLocationPin } from "react-icons/sl";
 import { BsSearch } from "react-icons/bs";
-import LowerHeader from './LowerHeader';
+import LowerHeader from "./LowerHeader";
 import { BiCart } from "react-icons/bi";
-import { DataContext } from '../DataProvider/DataProvider';
-
+import { DataContext } from "../DataProvider/DataProvider";
 
 function Header() {
-
-  const [{basket}, dispatch]=useContext(DataContext)
-  console.log(basket)
+  const [{ basket }, dispatch] = useContext(DataContext);
+  const totalItem = basket?.reduce((amount, item) => {
+    return item.amount + amount;
+  }, 0);
   return (
     <section className={classes.fixed}>
       <section>
@@ -67,7 +67,7 @@ function Header() {
 
             <Link to="/cart" className={classes.cart}>
               <BiCart size={35} />
-              <span>{basket?.length || 0}</span>
+              <span>{totalItem}</span>
             </Link>
           </div>
         </div>
@@ -75,6 +75,6 @@ function Header() {
       <LowerHeader />
     </section>
   );
-};
+}
 
-export default Header
+export default Header;
