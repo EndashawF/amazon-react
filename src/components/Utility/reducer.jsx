@@ -1,8 +1,8 @@
-
 import { Type } from "./action.type";
 
 export const initialState = {
   basket: [],
+  user: null,
 };
 
 export const reducer = (state, action) => {
@@ -55,18 +55,82 @@ export const reducer = (state, action) => {
       return state; // Item not found
     }
 
-    // ✅ Optional: Remove item completely (even if amount > 1)
-    // case Type.DELETE_FROM_BASKET: {
-    //   return {
-    //     ...state,
-    //     basket: state.basket.filter((item) => item.id !== action.id),
-    //   };
-    // }
+    // ✅ Set user
+    case Type.SET_USER:
+      return {
+        ...state,
+        user: action.user,
+      };
 
     default:
       return state;
   }
 };
+
+// import { Type } from "./action.type";
+
+// export const initialState = {
+//   basket: [],
+// };
+
+// export const reducer = (state, action) => {
+//   switch (action.type) {
+//     // ✅ Add item or increase quantity
+//     case Type.ADD_TO_BASKET: {
+//       const existingItem = state.basket.find(
+//         (item) => item.id === action.item.id
+//       );
+
+//       if (!existingItem) {
+//         return {
+//           ...state,
+//           basket: [...state.basket, { ...action.item, amount: 1 }],
+//         };
+//       }
+
+//       const updatedBasket = state.basket.map((item) =>
+//         item.id === action.item.id ? { ...item, amount: item.amount + 1 } : item
+//       );
+
+//       return {
+//         ...state,
+//         basket: updatedBasket,
+//       };
+//     }
+
+//     // ✅ Decrease quantity or remove item if amount is 1
+//     case Type.REMOVE_FROM_BASKET: {
+//       const index = state.basket.findIndex((item) => item.id === action.id);
+
+//       if (index >= 0) {
+//         const newBasket = [...state.basket];
+
+//         if (newBasket[index].amount > 1) {
+//           newBasket[index] = {
+//             ...newBasket[index],
+//             amount: newBasket[index].amount - 1,
+//           };
+//         } else {
+//           newBasket.splice(index, 1); // Remove item
+//         }
+//       }
+//         return {
+//           ...state,
+//           basket: newBasket,
+//         }
+//         case Type.SET_USER:
+//           return{
+//             ...state,
+//             user: action.user
+//           }
+
+//       // return state; // Item not found
+
+//     default:
+//       return state;
+//     }
+//   }
+// };
 
 // import {Type} from './action.type'
 
@@ -77,7 +141,7 @@ export const reducer = (state, action) => {
 // switch (action.type){
 //     case Type.ADD_TO_BASKET:
 //         //* check if the item exists
-// const existingItem = state.basket.find((item)=>item.id === action.id) 
+// const existingItem = state.basket.find((item)=>item.id === action.id)
 // if(!existingItem){
 //     return{
 //         ...state,
@@ -105,10 +169,8 @@ export const reducer = (state, action) => {
 //           return{
 //             ...state,
 //             basket:newBasket
-//           } 
+//           }
 //         default:
 //          return state;
 // }
 // }
-
-

@@ -8,13 +8,13 @@ import { DataProvider } from "./components/DataProvider/DataProvider.jsx";
 import {initialState, reducer} from "../src/components/Utility/reducer.jsx"
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <BrowserRouter>
+
+  
       <DataProvider reducer={reducer} initialState={initialState}>
         <App />
       </DataProvider>
-    </BrowserRouter>
-  </StrictMode>
+ 
+
 );
 
 
